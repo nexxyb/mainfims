@@ -1,0 +1,17 @@
+
+{% extends "layouts/base.html" %}
+ {% load crispy_forms_tags %} }
+ 
+{% block content %}
+<div class="container-fluid py-4">
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form| crispy }}
+    </table>
+    <input type="submit" value="Add">
+  </form>
+  <p><a href="{% url 'project-add' %}">Create Project</a></p>
+</div>
+{% endblock %}
+

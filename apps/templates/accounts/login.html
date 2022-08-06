@@ -26,16 +26,23 @@
               <div class="card card-plain mt-8">
                 <div class="card-header pb-0 text-left bg-transparent">
                   <h4 class="font-weight-bolder text-info text-gradient">
-                    Django Soft - Login
+                    FIMS - Login
                   </h4>
                   <p class="mb-0">
                     
                     {% if msg %}
                       <span class="text-danger">{{ msg | safe }}</span>
                     {% else %}
-                        Add your credentials
+                        Fill in your Details
                     {% endif %} 
-
+                    {% if next %}
+                      {% if user.is_authenticated %}
+                        <p>Your account doesn't have access to this page. To proceed,
+                        please login with an account that has access.</p>
+                      {% else %}
+                        <p>Please login to see this page.</p>
+                      {% endif %}
+                    {% endif %}
                   </p>
                 </div>
                 <div class="card-body">

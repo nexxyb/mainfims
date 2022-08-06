@@ -1,0 +1,23 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div>
+        <div>
+            <h3>All Projects</h3>
+            {% if project_list %}
+             <ul>
+                {% for project in project_list %}
+                 <li>
+                    <a href="{{ project.get_absolute_url }}">{{project.project_name }}</a> {{project.amount}}
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                 <p>There are no entries yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+   
+            {% endblock %}

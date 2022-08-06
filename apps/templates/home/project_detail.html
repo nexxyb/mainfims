@@ -1,0 +1,30 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="container-fluid py-4">
+  <h3>Project Details</h3>
+    <table class="table">
+      <tr>
+        <td><strong>Project Name:</strong></td>
+        <td>{{ project.project_name.title }}</td>
+      </tr>
+      <tr>
+        <td><strong>Amount:</strong> </td>
+        <td> {{ project.project_amount }}</td>
+      </tr>
+      <tr>
+        <td><strong>Start Date:</strong></td>
+        <td> {{ project.start_date }}</td>
+      </tr>
+      <tr>
+        <td><strong>End Date:</strong></td>
+        <td> {{ project.end_date }}</td>
+      </tr>
+      <tr>
+        <td><strong>Duration:</strong></td>
+        <td> {{ project.duration }}</td>
+      </tr>
+    </table>
+  <span><strong><a href="{% url 'project-update' pk=project.project_id %}" class="btn btn-outline-success"> Edit </a><a href="{% url 'project-delete' pk=project.project_id %}" class="btn btn-outline-danger">Delete</a> </strong></span><span><strong><a href="{% url 'project-add' %}" class="btn btn-outline-primary"> Add </a></strong></span>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="container-fluid py-4">
+  <h3>Expense Details</h3>
+  <table class="table">
+    <tr>
+      <td><strong>Category:</strong></td>
+      <td>{{ expense.category.title }}</td>
+    </tr>
+    <tr>
+      <td><strong>Amount:</strong> </td>
+      <td> {{ expense.amount }}</td>
+    </tr>
+    <tr>
+      <td><strong>Date:</strong></td>
+      <td> {{ expense.date }}</td>
+    </tr>
+    <tr>
+      <td><strong>Description:</strong></td>
+      <td> {{ expense.description }}</td>
+    </tr>
+    <tr>
+      <td><strong>Associated Project:</strong></td>
+      <td> {{ expense.project_name }}</td>
+    </tr>
+    </table>
+    <span><strong><a href="{% url 'expense-update' pk=expense.expense_id %}" class="btn btn-outline-success"> Edit </a><a href="{% url 'expense-delete' pk=expense.expense_id %}" class="btn btn-outline-danger">Delete</a> </strong></span><span><strong><a href="{% url 'expense-add' %}" class="btn btn-outline-primary"> Add </a></strong></span>
+</div>  
+{% endblock %} 

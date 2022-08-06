@@ -1,0 +1,22 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="container-fluid py-4">>
+    <div>
+        <div>
+            <h3>All Expenses</h3>
+            {% if expense_list %}
+             <ul>
+                {% for expense in expense_list %}
+                 <li>
+                    <a href="{{ expense.get_absolute_url }}">{{expense.category }}</a> {{expense.amount}}
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                 <p>There are no entries yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
