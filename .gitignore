@@ -32,3 +32,4 @@ apps/static/assets/.temp
 #Environments
 venv/
 .env
+README.md
