@@ -221,7 +221,7 @@ class AllIncomesView(generic.ListView, LoginRequiredMixin):
     
 class CreateProject(CreateView, LoginRequiredMixin):
     model= Project
-    fields= ['project_name', 'project_amount', 'start_date', 'end_date']
+    fields= ['project_name', 'project_amount', 'description', 'start_date', 'end_date']
     
     def get_form_class(self):
         modelform = super().get_form_class()
