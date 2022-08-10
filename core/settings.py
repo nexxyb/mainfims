@@ -3,7 +3,8 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
-import os, environ
+import os
+import environ
 
 env = environ.Env(
     # set casting, default value
@@ -21,13 +22,13 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY', default='S#perS3crEt_007')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env("DEBUG")
 
 # Assets Management
 ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets') 
 
 # load production server from .env
-ALLOWED_HOSTS        = ['fimsy.herokuapp.com',]
+ALLOWED_HOSTS        = ['fimsy.herokuapp.com', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = []
 
 # ABSOLUTE_URL_OVERRIDES= {

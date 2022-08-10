@@ -277,9 +277,9 @@
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Duration (weeks)</th>
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total Spent</th>
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total Income</th>
-                                {% comment %} <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget Balance</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget Balance</th>
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actual Balance</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Completion</th> {% endcomment %}
+                                {% comment %} <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Completion</th> {% endcomment %}
                               </tr>
                             </thead>
                             <tbody>
@@ -300,24 +300,20 @@
                                   </td>
                                   
                                   <td class="align-middle text-center text-sm">
-                                    <span class="text-xs font-weight-bold"> {{project.amount_spent}}</span>
+                                    <span class="text-xs font-weight-bold"> {{project.total_spent}}</span>
                                   </td>
                                   
                                   <td class="align-middle text-center text-sm">
                                     <span class="text-xs font-weight-bold"> {{project.total_income}}</span>
                                   </td>
-                                  {% comment %} {% if project.budget_balance %}
+                                  
                                   <td class="align-middle text-center text-sm">
                                     <span class="text-xs font-weight-bold"> {{project.budget_balance }}</span>
                                   </td>
-                                  {% else %}
+                                 
                                   <td class="align-middle text-center text-sm">
-                                    <span class="text-xs font-weight-bold">0</span>
-                                  </td>
-                                  {% endif %} {% endcomment %}
-                                  {% comment %}<td class="align-middle text-center text-sm">
                                     <span class="text-xs font-weight-bold"> {{project.actual_balance}}</span>
-                                  </td> {% endcomment %}
+                                  </td> 
                                   
                                   {% comment %} <td class="align-middle">
                                     <div class="progress-wrapper w-75 mx-auto">

@@ -20,7 +20,7 @@ from djmoney.models.fields import MoneyField
 class Project(models.Model):
     project_id= models.CharField(primary_key=True, default=uuid.uuid4, editable=False, max_length=45)
     project_name= models.CharField(max_length=30, unique=True)
-    project_amount=MoneyField(max_digits=14, decimal_places=2, default_currency='USD')
+    project_amount=MoneyField(verbose_name='Budget', max_digits=14, decimal_places=2, default_currency='USD')
     description = models.TextField(null=True, blank=True, max_length= 200)
     start_date= models.DateField()
     end_date= models.DateField()
@@ -46,9 +46,9 @@ class Project(models.Model):
         return int(duration_weeks)
     
     
-    def amount_spent(self):
-        total_amount = Expense.objects.filter(project_name=self.project_name).aggregate(total=Sum('amount'))
-        spent= total_amount['total']
+    def total_spent(self):
+        total_spent = Expense.objects.filter(project_name=self.project_name).aggregate(total=Sum('amount'))
+        spent= total_spent['total']
         if type(spent) == None:
             return 0
         else:
@@ -63,17 +63,34 @@ class Project(models.Model):
         else:
             return income
         
-    # @property
-    # def budget_balance(self):
-    #     total_amount = Expense.objects.filter(project_name=self.project_name).aggregate(total=Sum('amount'))
-    #     spent= total_amount['total']
-    #     return self.project_amount - spent
     @property
     def budget_balance(self):
-        return self.project_amount - self.amount_spent()
+        total_spent = Expense.objects.filter(project_name=self.project_name).aggregate(total=Sum('amount'))
+        if total_spent['total'] == None:
+             spent = 0
+        else:
+            spent= float(total_spent['total'])
+        budget_query= Project.objects.get(project_name=self.project_name).project_amount.amount
+        #currency_query= Project.objects.get(project_name=self.project_name).project_amount.currency
+        budget= float(budget_query)
+        return budget - spent 
+        
     @property
     def actual_balance(self):
-        return self.total_income - self.amount_spent()
+        total_spent = Expense.objects.filter(project_name=self.project_name).aggregate(total=Sum('amount'))
+        if total_spent['total'] == None:
+            spent = 0
+        else:
+            spent= float(total_spent['total'])
+        total_income = Income.objects.filter(project_name=self.project_name).aggregate(total=Sum('amount'))
+        if total_income['total'] == None:
+            income_total = 0
+        else:
+            income_total= float(total_income['total'])
+        return income_total - spent 
+    
+    
+    
 
 class Expense(models.Model):
     
